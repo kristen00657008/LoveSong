@@ -12,11 +12,22 @@ struct SongRow: View {
     var song: Song
     var body: some View {
         HStack{
-            //Image(song.name)
+            Image(systemName: "music.note")
+                .resizable()
+                .scaledToFill()
+                .padding(.leading, 10)
+                .background(Color.gray)
+                .frame(width: 40, height: 40)
+                .clipShape(Circle())
             VStack{
                 Text(song.name)
+                    .font(Font.system(size: 25))
+                    .padding(.leading, 10)
                 Text(song.singer)
+                    .foregroundColor(.gray)
+                    .padding(.leading, 10)
             }
+            
         }
     }
 }
@@ -26,3 +37,4 @@ struct SongRow_Previews: PreviewProvider {
         SongRow(song: Song(id: UUID(), name: "", singer: "", favorite: false))
     }
 }
+
