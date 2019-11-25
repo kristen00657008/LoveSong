@@ -10,6 +10,7 @@ import SwiftUI
 
 struct SongRow: View {
     var song: Song
+    
     var body: some View {
         HStack{
             Image(systemName: "music.note")
@@ -27,14 +28,18 @@ struct SongRow: View {
                     .foregroundColor(.gray)
                     .padding(.leading, 10)
             }
-            
+            Spacer()
+            Image(systemName: "star.fill")
+                .resizable()
+                .frame(width: 20, height:20)
+                .foregroundColor(Color.yellow)
         }
     }
 }
 
 struct SongRow_Previews: PreviewProvider {
     static var previews: some View {
-        SongRow(song: Song(id: UUID(), name: "", singer: "", favorite: false))
+        SongRow(song: Song(id: UUID(), name: "", singer: "", score: 5, favorite: false))
     }
 }
 

@@ -13,17 +13,19 @@ struct SongEditor: View {
     var songsData: SongsData
     @State private var name = ""
     @State private var singer = ""
+    @State private var score = 5
     @State private var favorite = true
     var editSong : Song?
     var body: some View {
         Form{
             TextField("歌曲名稱", text: $name)
             TextField("歌手", text: $singer)
+            Stepper("你給這首歌\(score)顆星", value: $score, in: 0...5)
             Toggle("是否加入你的最愛", isOn: $favorite)
         }
         .navigationBarTitle(editSong == nil ? "Add new song" : "Edit song")
         .navigationBarItems(trailing: Button("Save") {
-            let song = Song(name: self.name, singer: self.singer, favorite: self.favorite)
+            let song = Song(name: self.name, singer: self.singer, score: self.score, favorite: self.favorite)
                 if let editSong = self.editSong{
                     let index = self.songsData.songs.firstIndex {
                         return $0.id == editSong.id
@@ -38,6 +40,7 @@ struct SongEditor: View {
             if let editSong = self.editSong{
                 self.name = editSong.name
                 self.singer = editSong.singer
+                self.score = editSong.score
                 self.favorite = editSong.favorite
             }
         }

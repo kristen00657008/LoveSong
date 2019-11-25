@@ -8,9 +8,10 @@
 
 import Foundation
 
-struct Song: Identifiable{
+struct Song: Identifiable, Codable{
     var id = UUID()
     var name: String
     var singer: String
+    var score: Int
     var favorite: Bool
 }
