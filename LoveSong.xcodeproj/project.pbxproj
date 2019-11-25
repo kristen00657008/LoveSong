@@ -20,6 +20,7 @@
 		336458152382945A004B700E /* SongEditor.swift in Sources */ = {isa = PBXBuildFile; fileRef = 336458142382945A004B700E /* SongEditor.swift */; };
 		3B12C673238BDAE00066DE16 /* AppView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12C672238BDAE00066DE16 /* AppView.swift */; };
 		3B12C675238BDB860066DE16 /* PlayList.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12C674238BDB860066DE16 /* PlayList.swift */; };
+		3B12C717238BF50F0066DE16 /* ScorePieChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = 3B12C716238BF50F0066DE16 /* ScorePieChart.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,6 +39,7 @@
 		336458142382945A004B700E /* SongEditor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SongEditor.swift; sourceTree = "<group>"; };
 		3B12C672238BDAE00066DE16 /* AppView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppView.swift; sourceTree = "<group>"; };
 		3B12C674238BDB860066DE16 /* PlayList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PlayList.swift; sourceTree = "<group>"; };
+		3B12C716238BF50F0066DE16 /* ScorePieChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ScorePieChart.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -72,13 +74,14 @@
 			children = (
 				336457F723829231004B700E /* AppDelegate.swift */,
 				336457F923829231004B700E /* SceneDelegate.swift */,
-				336457FE23829231004B700E /* SongList.swift */,
-				3364581223829427004B700E /* SongRow.swift */,
+				3B12C672238BDAE00066DE16 /* AppView.swift */,
 				3364580E238292BB004B700E /* Song.swift */,
+				336458102382932E004B700E /* SongsData.swift */,
+				336457FE23829231004B700E /* SongList.swift */,
+				3B12C716238BF50F0066DE16 /* ScorePieChart.swift */,
+				3364581223829427004B700E /* SongRow.swift */,
 				336458142382945A004B700E /* SongEditor.swift */,
 				3B12C674238BDB860066DE16 /* PlayList.swift */,
-				3B12C672238BDAE00066DE16 /* AppView.swift */,
-				336458102382932E004B700E /* SongsData.swift */,
 				3364580023829237004B700E /* Assets.xcassets */,
 				3364580523829237004B700E /* LaunchScreen.storyboard */,
 				3364580823829237004B700E /* Info.plist */,
@@ -176,6 +179,7 @@
 				336457FA23829231004B700E /* SceneDelegate.swift in Sources */,
 				336457FF23829231004B700E /* SongList.swift in Sources */,
 				3B12C673238BDAE00066DE16 /* AppView.swift in Sources */,
+				3B12C717238BF50F0066DE16 /* ScorePieChart.swift in Sources */,
 				336457FD23829231004B700E /* LoveSong.xcdatamodeld in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

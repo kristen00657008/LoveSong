@@ -8,7 +8,7 @@
 
 import SwiftUI
 
-struct AppView: View {
+struct AppView: View {    
     var body: some View {
         TabView{
             SongList().tabItem{
@@ -18,6 +18,10 @@ struct AppView: View {
             PlayList().tabItem{
                 Image(systemName: "music.note.list")
                 Text("播放清單")
+            }
+            ScorePieChart(scoreDataPersentages: [10,20,10,20,15,25]).tabItem{
+                Image(systemName: "chart.pie.fill")
+                Text("圓餅圖")
             }
         }.accentColor(Color.purple)
     }
