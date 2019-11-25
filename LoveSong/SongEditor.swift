@@ -23,8 +23,8 @@ struct SongEditor: View {
             Stepper("你給這首歌\(score)顆星", value: $score, in: 0...5)
             Toggle("是否加入你的最愛", isOn: $favorite)
         }
-        .navigationBarTitle(editSong == nil ? "Add new song" : "Edit song")
-        .navigationBarItems(trailing: Button("Save") {
+        .navigationBarTitle(editSong == nil ? "新增歌曲" : "編輯歌曲")
+        .navigationBarItems(trailing: Button("儲存") {
             let song = Song(name: self.name, singer: self.singer, score: self.score, favorite: self.favorite)
                 if let editSong = self.editSong{
                     let index = self.songsData.songs.firstIndex {

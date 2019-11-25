@@ -29,10 +29,20 @@ struct SongRow: View {
                     .padding(.leading, 10)
             }
             Spacer()
-            Image(systemName: "star.fill")
-                .resizable()
-                .frame(width: 20, height:20)
-                .foregroundColor(Color.yellow)
+            ForEach(0..<song.score)
+            { (index) in
+                Image(systemName: "star.fill")
+                    .resizable()
+                    .frame(width: 20, height:20)
+                    .foregroundColor(Color.yellow)
+            }
+            ForEach(0..<5-song.score)
+            { (index) in
+                Image(systemName: "star")
+                    .resizable()
+                    .frame(width: 20, height:20)
+                    .foregroundColor(Color.yellow)
+            }
         }
     }
 }
