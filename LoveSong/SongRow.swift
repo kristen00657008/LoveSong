@@ -20,9 +20,9 @@ struct SongRow: View {
                 .background(Color.gray)
                 .frame(width: 40, height: 40)
                 .clipShape(Circle())
-            VStack{
+            VStack(alignment: .leading){
                 Text(song.name)
-                    .font(Font.system(size: 25))
+                    .font(Font.system(size: 22))
                     .padding(.leading, 10)
                 Text(song.singer)
                     .foregroundColor(.gray)

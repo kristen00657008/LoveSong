@@ -9,8 +9,22 @@
 import SwiftUI
 
 struct PlayList: View {
+    @ObservedObject var songsData = SongsData()
     var body: some View {
-        Text(/*@START_MENU_TOKEN@*/"Hello World!"/*@END_MENU_TOKEN@*/)
+        NavigationView{
+            List{
+                ForEach(songsData.songs){ (song) in
+                    if song.favorite == true {
+                        NavigationLink(destination: SongMusic(song:song)){
+                            SongRow(song: song)
+                        }                        
+                    }
+                }
+            }
+            .navigationBarTitle("我的最愛")
+        }
+        
+        
     }
 }
 

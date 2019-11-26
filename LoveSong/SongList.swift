@@ -24,7 +24,27 @@ struct SongList: View {
                 }
             }
             .navigationBarTitle("歌曲列表")
-            .navigationBarItems(leading: EditButton(),trailing: Button(action: {self.showEditSong = true}, label: {Image(systemName: "plus.circle.fill")}))
+            .navigationBarItems(leading:
+                HStack{
+                    EditButton()
+                        .padding(5)
+                    
+                    Button(action: {
+                        self.songsData.songs.removeAll()
+                    }, label: {Text("一鍵清除")})
+                }
+                ,trailing:
+                HStack{
+                    Button(action: {
+                        for song in DemoData
+                        {
+                            self.songsData.songs.append(song)
+                        }                        
+                        }, label: {Text("一鍵新增")})
+                        .padding(5)
+                    
+                    Button(action: {self.showEditSong = true}, label: {Image(systemName: "plus.circle.fill")})
+                })
             .sheet(isPresented: $showEditSong) {
                 NavigationView{
                     SongEditor(songsData: self.songsData)
