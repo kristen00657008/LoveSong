@@ -23,11 +23,11 @@ struct PieChart: Shape {
 struct ScorePieChart: View {
     @ObservedObject var songsData = SongsData()
     var angles: [Angle]
+    var scoreCount: [Double] = [0,0,0,0,0,0]
     @State private var selectedChart = "圓餅圖"
     var analyzeChart = ["圓餅圖", "柱狀圖"]
     init (songsData: SongsData)
     {
-        var scoreCount: [Double] = [0,0,0,0,0,0]
         var sum: Double = 0
         var scorePercentages: [Double] = [0,0,0,0,0,0]
         var startDegree: Double = 0
@@ -56,17 +56,19 @@ struct ScorePieChart: View {
                  }
                  .labelsHidden()
                  .pickerStyle(SegmentedPickerStyle())
-                 .padding(.top,20)
+                 .position(x: 210, y: 50)
                  .navigationBarTitle(Text("分析"))
                 if self.selectedChart == "圓餅圖"
                 {
-                    DrawPieChart(angles: angles)
+                    DrawPieChart(angles: angles).padding(.top,20)
                 }
                 else if self.selectedChart == "柱狀圖"
                 {
-                    DrawPieChart(angles: angles)
+                    DrawBarChart(scoreCount: scoreCount)
                 }
+               
             }
+            .padding(.top,20)
         }
     }
 }
@@ -100,7 +102,6 @@ struct DrawPieChart: View {
                 }
             }
             .frame(width:350, height: 30)
-            .padding(.top,50)
             ZStack{
                 PieChart(startAngle:self.angles[5], endAngle: .zero)
                     .fill(Color.orange)
@@ -115,6 +116,67 @@ struct DrawPieChart: View {
                 PieChart(startAngle:self.angles[0], endAngle: self.angles[1])
                     .fill(Color.gray)
             }
+        }
+        .padding(.top,-250)
+    }
+}
+
+struct DrawBarChart: View {
+    var scoreCount: [Double]
+    var body: some View {
+        HStack
+        {
+            VStack
+            {
+                Text("100+")
+                    .padding(.top, 4)
+            }
+            .frame(width: 60, height: 270)
+            
+            ZStack(alignment: .leading)
+            {
+                Path
+                {
+                    (path) in
+                    path.move(to: CGPoint(x: 0, y: -290))
+                    path.addLine(to: CGPoint(x: 0, y: 0))
+                    path.addLine(to: CGPoint(x: 320, y: 0))
+                }
+                .stroke(Color.black, lineWidth: 2)
+                starText()
+            }
+        }
+        .frame(width: 300, height: 270)
+        .position(x: 160, y: 250)
+    }
+}
+struct starText: View
+{
+    var body: some View
+    {
+        Group
+        {
+            Text("0").offset(x:1.5, y:-30)
+            Text("1")
+            Text("2")
+            Text("3")
+            Text("4")
+            Text("5")
+            
+        }
+        .padding()
+    }
+}
+
+struct starCountText: View
+{
+    var body: some View
+    {
+        Group
+        {
+            Text("0~9 ")
+            .padding(.top, 4)
+            
         }
     }
 }
