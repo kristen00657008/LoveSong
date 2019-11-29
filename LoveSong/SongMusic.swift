@@ -12,7 +12,6 @@ struct SongMusic : View {
             GeometryReader { geometry in
                 ZStack {
                     Path { path in
-                        
                         path.addArc(center: CGPoint(x: geometry.size.width/2, y: geometry.size.width/2),
                                     radius: geometry.size.width/2,
                                     startAngle: Angle(degrees: 0),
@@ -22,6 +21,8 @@ struct SongMusic : View {
                     .stroke(Color.green, lineWidth: 40)
                     
                     InnerRing(pct: self.pct).stroke(Color.yellow, lineWidth: 20)
+                    Text("音樂播放功能尚未完成")
+                        .font(Font.system(size: 35))
                 }
             }
             .aspectRatio(1, contentMode: .fit)
@@ -32,8 +33,7 @@ struct SongMusic : View {
                 }
             }
         }
-        .navigationBarTitle(song.name)
-        
+        .navigationBarTitle(song.singer + "-" + song.name)        
     }
 }
 

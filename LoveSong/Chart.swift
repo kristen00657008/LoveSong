@@ -11,6 +11,7 @@ import SwiftUI
 struct PieChart: Shape {
     var startAngle: Angle
     var endAngle: Angle
+    
     func path(in rect: CGRect) ->Path {
         Path { (path) in
             let center = CGPoint(x: rect.midX, y: rect.midY)
@@ -20,7 +21,7 @@ struct PieChart: Shape {
     }
 }
 
-struct ScorePieChart: View {
+struct Chart: View {
     @ObservedObject var songsData = SongsData()
     var angles: [Angle]
     var scoreCount: [Double] = [0,0,0,0,0,0]
@@ -56,7 +57,7 @@ struct ScorePieChart: View {
                  }
                  .labelsHidden()
                  .pickerStyle(SegmentedPickerStyle())
-                 .position(x: 210, y: 50)
+                 .position(x: 210, y: 0)
                  .navigationBarTitle(Text("分析"))
                 if self.selectedChart == "圓餅圖"
                 {
@@ -65,17 +66,17 @@ struct ScorePieChart: View {
                 else if self.selectedChart == "柱狀圖"
                 {
                     DrawBarChart(scoreCount: scoreCount)
+                        .frame(width: 400, height: 600, alignment: .bottom)
                 }
-               
             }
             .padding(.top,20)
         }
     }
 }
 
-struct ScorePieChart_Previews: PreviewProvider {
+struct Chart_Previews: PreviewProvider {
     static var previews: some View {
-        ScorePieChart(songsData: SongsData())
+        Chart(songsData: SongsData())
     }
 }
 
@@ -124,59 +125,76 @@ struct DrawPieChart: View {
 struct DrawBarChart: View {
     var scoreCount: [Double]
     var body: some View {
+        
         HStack
         {
-            VStack
+            ZStack
             {
-                Text("100+")
-                    .padding(.top, 4)
-            }
-            .frame(width: 60, height: 270)
-            
-            ZStack(alignment: .leading)
-            {
-                Path
-                {
-                    (path) in
-                    path.move(to: CGPoint(x: 0, y: -290))
-                    path.addLine(to: CGPoint(x: 0, y: 0))
-                    path.addLine(to: CGPoint(x: 320, y: 0))
-                }
-                .stroke(Color.black, lineWidth: 2)
-                starText()
+                DrawLine()
+                CountText().offset(x: -150)
+                BarChart(scoreCount: scoreCount).offset(y:85)
             }
         }
-        .frame(width: 300, height: 270)
-        .position(x: 160, y: 250)
-    }
-}
-struct starText: View
-{
-    var body: some View
-    {
-        Group
-        {
-            Text("0").offset(x:1.5, y:-30)
-            Text("1")
-            Text("2")
-            Text("3")
-            Text("4")
-            Text("5")
-            
-        }
-        .padding()
     }
 }
 
-struct starCountText: View
+struct DrawLine: View
 {
     var body: some View
     {
-        Group
-        {
-            Text("0~9 ")
-            .padding(.top, 4)
-            
+       Path{ (path) in
+            path.move(to: CGPoint(x: 75, y: 150))
+            path.addLine(to: CGPoint(x: 75, y: 465))
+            path.addLine(to: CGPoint(x: 375, y: 465))
+        }
+        .stroke(Color.black, lineWidth: 2)
+    }
+}
+
+struct CountText: View
+{
+    var body: some View
+    {
+        Group {
+            Text("0").offset(x:10, y:170)
+            Text("5").offset(x:10, y:115)
+            Text("10").offset(x:10, y:65)
+            Text("15").offset(x:10, y:15)
+            Text("20").offset(x:10, y:-35)
+            Text("25").offset(x:10, y:-85)
+            Text("30").offset(x:10, y:-135)
+        }
+        .font(Font.system(size: 25))
+    }
+}
+struct BarChart: View {
+    @State private var height: [CGFloat] = [0,0,0,0,0,0,0]
+    var scoreCount: [Double] = [0,0,0,0,0,0]
+    var body: some View
+    {
+        HStack{
+            ForEach(0..<scoreCount.count){ (index) in
+                VStack{
+                    Text(String(Int(self.scoreCount[index])))
+                    Rectangle()
+                        .fill(Color.red)
+                        .frame(width: 25, height: self.height[index])
+                        .animation(.linear(duration: 1))
+                        .onAppear
+                        {
+                            self.height[index] = CGFloat(self.scoreCount[index]) * 10
+                        }
+                    Text(String(index))
+                        .font(Font.system(size: 25))
+                    Image(systemName: "star.fill")
+                        .resizable()
+                        .frame(width: 20, height:20)
+                        .foregroundColor(Color.yellow)
+                        .offset(y:-10)
+                }
+                .padding(.trailing,10)
+                .offset(x:10, y: 102 + CGFloat(self.scoreCount[index] * -5))
+            }
         }
     }
 }

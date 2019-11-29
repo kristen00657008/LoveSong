@@ -22,12 +22,14 @@ struct BarChart: View {
                         .animation(.linear(duration: 1))
                         .onAppear
                         {
-                            self.height[index] = CGFloat(self.scoreCount[index]) * 10
+                            self.height[index] = CGFloat(self.scoreCount[index]) * 5
                         }
                     Text(String(index))
                         .font(Font.system(size: 25))
                 
-                }.padding(.trailing,15)
+                }
+                .padding(.trailing,10)
+                .offset(x:10, y: 100 + CGFloat(self.scoreCount[index] * -2.5))
             }
         }
         

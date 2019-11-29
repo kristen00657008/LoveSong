@@ -20,9 +20,9 @@ struct AppView: View {
                 Image(systemName: "music.note.list")
                 Text("播放清單")
             }
-            ScorePieChart(songsData: self.songsData).tabItem{
+            Chart(songsData: self.songsData).tabItem{
                 Image(systemName: "chart.pie.fill")
-                Text("圓餅圖")
+                Text("分析圖表")
             }
         }.accentColor(Color.purple)
     }
