@@ -49,8 +49,7 @@ struct Chart: View {
     var body: some View {
         NavigationView{
             VStack{
-                Picker(selection: $selectedChart, label: Text("請選擇分析圖表"))
-                 {
+                Picker(selection: $selectedChart, label: Text("請選擇分析圖表")) {
                      ForEach(self.analyzeChart, id: \.self) { (selectedChart) in
                          Text(selectedChart)
                      }
@@ -59,12 +58,10 @@ struct Chart: View {
                  .pickerStyle(SegmentedPickerStyle())
                  .position(x: 210, y: 0)
                  .navigationBarTitle(Text("分析"))
-                if self.selectedChart == "圓餅圖"
-                {
+                if self.selectedChart == "圓餅圖" {
                     DrawPieChart(angles: angles).padding(.top,20)
                 }
-                else if self.selectedChart == "柱狀圖"
-                {
+                else if self.selectedChart == "柱狀圖" {
                     DrawBarChart(scoreCount: scoreCount)
                         .frame(width: 400, height: 600, alignment: .bottom)
                 }
@@ -125,7 +122,6 @@ struct DrawPieChart: View {
 struct DrawBarChart: View {
     var scoreCount: [Double]
     var body: some View {
-        
         HStack
         {
             ZStack
